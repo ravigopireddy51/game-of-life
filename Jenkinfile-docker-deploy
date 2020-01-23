@@ -59,20 +59,27 @@ stages {
      nexusPublisher nexusInstanceId: '1234', nexusRepositoryId: 'releases', packages: [[$class: 'MavenPackage', mavenAssetList: [[classifier: '', extension: '', filePath: 'gameoflife-web/target/gameoflife.war']], mavenCoordinate: [artifactId: 'gameoflife1', groupId: 'com.wakaleo.gameoflife', packaging: 'war', version: '$BUILD_NUMBER']]]
       }
  }
-    stage('Build and Push Docker Image') {
+   stage('Build and Push Docker Image') {
       steps {
         sh label: '', script: '''docker build -t gameoflife-image:$BUILD_NUMBER .
                                  docker tag gameoflife-image:$BUILD_NUMBER docker.io/ravigopireddy299/gameoflife-image:$BUILD_NUMBER
                                  docker push docker.io/ravigopireddy299/gameoflife-image:$BUILD_NUMBER'''
       }
  }
-  stage('Deploy to Kubernetes') {
+  stage('Update Image Version') {
       steps {
-        sh label: '', script: '''kubectl apply -f deploy-kube.yml
-                                 kubectl apply -f service.yml
-                                 '''
+        sh label: '', script: '''sed -i s/latest/$BUILD_NUMBER/ deploy-kube.yml'''
+
       }
  }
+ stage('Apply Kubernetes files') {
+            steps {
+             sh label: '', script: '''scp *.yml jenkins@13.233.112.139:/home/jenkins
+                                  ssh jenkins@13.233.112.139 kubectl apply -f deploy-kube.yml
+                                  ssh jenkins@13.233.112.139 kubectl apply -f service.yml'''
+           
+        }
+     }
 }
 post {
         success {
