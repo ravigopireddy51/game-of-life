@@ -2,8 +2,7 @@ pipeline {
   environment {
     registry = "ravigopireddy299/gameoflife-image"
     registryCredential = 'dockerhub'
-    dockerImage = ''
-  }
+     }
     agent any 
     tools { 
         maven 'Maven' 
@@ -71,21 +70,7 @@ stage('Building image') {
         }
       }
     }
-    stage('Deploy Image') {
-      steps{
-        script {
-          docker.withRegistry( '', registryCredential ) {
-            dockerImage.push()
-          }
-        }
-      }
-    }
-    stage('Remove Unused docker image') {
-      steps{
-        sh "docker rmi $registry:$BUILD_NUMBER"
-      }
-    }
- 
+   
     
  stage('Apply Kubernetes files') {
             steps {
