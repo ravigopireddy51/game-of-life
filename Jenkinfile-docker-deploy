@@ -85,8 +85,7 @@ stage('Building image') {
         sh "docker rmi $registry:$BUILD_NUMBER"
       }
     }
-  }
-}
+ 
     
  stage('Apply Kubernetes files') {
             steps {
