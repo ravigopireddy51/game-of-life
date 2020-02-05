@@ -74,9 +74,9 @@ stage('Building image') {
     
  stage('Apply Kubernetes files') {
             steps {
-             sh label: '', script: '''scp *.yml jenkins@13.233.112.139:/home/jenkins
-                                  ssh jenkins@13.233.112.139 kubectl apply -f deploy-kube.yml
-                                  ssh jenkins@13.233.112.139 kubectl apply -f service.yml'''
+             sh label: '', script: '''scp *.yml jenkins@13.232.100.178:/home/jenkins
+                                  ssh jenkins@13.232.100.178 kubectl apply -f deploy-kube.yml
+                                  ssh jenkins@13.232.100.178 kubectl apply -f service.yml'''
            
         }
      }
