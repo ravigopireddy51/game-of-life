@@ -72,8 +72,7 @@ stage('Building image') {
           
         }
       }
-    }
-   
+       
     
  stage('Apply Kubernetes files') {
             steps {
