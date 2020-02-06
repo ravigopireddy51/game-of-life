@@ -65,8 +65,11 @@ stages {
       
 stage('Building image') {
       steps{
-        script {
-          dockerImage = docker.build registry + ":$BUILD_NUMBER"
+        sh label: '', script: '''docker build -t gameoflife-image:$BUILD_NUMBER .
+                                  docker tag gameoflife-image:$BUILD_NUMBER docker.io/ravigopireddy299/gameoflife-image:$BUILD_NUMBER
+                                  docker push docker.io/ravigopireddy299/gameoflife-image:$BUILD_NUMBER'''
+        //      dockerImage = docker.build registry + ":$BUILD_NUMBER"
+          
         }
       }
     }
@@ -74,9 +77,9 @@ stage('Building image') {
     
  stage('Apply Kubernetes files') {
             steps {
-             sh label: '', script: '''scp *.yml jenkins@13.232.100.178:/home/jenkins
-                                  ssh jenkins@13.232.100.178 kubectl apply -f deploy-kube.yml
-                                  ssh jenkins@13.232.100.178 kubectl apply -f service.yml'''
+             sh label: '', script: '''scp *.yml jenkins@3.6.170.78:/home/jenkins
+                                  ssh jenkins@3.6.170.78 kubectl apply -f deploy-kube.yml
+                                  ssh jenkins@3.6.170.78 kubectl apply -f service.yml'''
            
         }
      }
