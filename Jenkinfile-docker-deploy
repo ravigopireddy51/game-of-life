@@ -71,8 +71,13 @@ stages {
       
 stage('Building image') {
       steps{
-             dockerImage = docker.build registry + ":$BUILD_NUMBER"
-             docker push docker.io/ravigopireddy299/gameoflife-image:$BUILD_NUMBER
+       sh label: '', script: '''docker build -t gameoflife-image:$BUILD_NUMBER .
+                                 docker tag gameoflife-image:$BUILD_NUMBER docker.io/ravigopireddy299/gameoflife-image:$BUILD_NUMBER
+                                 docker push docker.io/ravigopireddy299/gameoflife-image:$BUILD_NUMBER'''
+      
+      
+           //   dockerImage = docker.build registry + ":$BUILD_NUMBER"
+             
          }
       }
       
