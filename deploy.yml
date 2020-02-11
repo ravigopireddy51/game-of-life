@@ -6,7 +6,7 @@
     shell: /etc/init.d/tomcatstop
   - name: Clean the existing war file
     file:
-      path: /root/apache-tomcat-8.5.49/webapps/gameoflife*.war
+      path: /root/apache-tomcat-8.5.49/webapps/gameoflife1*.war
       state: absent    
   - name: Deploy War File
     get_url:
