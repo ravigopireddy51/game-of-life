@@ -1,4 +1,4 @@
-apiVersion: /apis/extensions/v1beta1
+apiVersion: /apis/extensions/V1beta1
 kind: Deployment
 metadata:
     name: gol-deploy
