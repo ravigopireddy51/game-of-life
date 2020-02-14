@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-    name: gol-deploy
+    name: gameoflife-image-deploy
 spec:
     replicas: 1
     selector:
     matchLabels:
-      app: gol-ctr
+      app:  gameoflife-image-ctr
     template:
       metadata:
        labels:
-         app: gol-ctr
+         app:  gameoflife-image-ctr
       spec:
          containers:
-         - name: gol-pod
+         - name:  gameoflife-image-pod
            image: docker.io/ravigopireddy299/gameoflife-image:latest
            ports:
            - containerPort: 8080
