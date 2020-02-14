@@ -93,8 +93,8 @@ stage('Building image') {
  stage('Apply Kubernetes files') {
             steps {
              sh label: '', script: '''scp *.yml jenkins@3.6.170.78:/home/jenkins
-                                  ssh jenkins@3.6.170.78 kubectl apply -f deploy-kube.yml
-                                  ssh jenkins@3.6.170.78 kubectl apply -f service.yml'''
+                                  ssh jenkins@3.6.170.78 kubectl apply -f deploy-kube.yml --validate=false
+                                  ssh jenkins@3.6.170.78 kubectl apply -f service.yml --validate=false'''  
            
         }
      }
