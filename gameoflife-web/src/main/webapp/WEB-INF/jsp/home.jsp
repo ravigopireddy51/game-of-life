@@ -61,7 +61,7 @@
     </style>
 </head>
 <body>
-<h2>Welcome to Ravindra's Game Of Life!</h2>
+<h2>Welcome to Ravinda123 Game Of Life!</h2>
 
 <div class="intro">
     <p>This is a really cool web version of Conway's famous Game Of
