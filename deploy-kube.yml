@@ -7,12 +7,10 @@ spec:
     selector:
     matchLabels:
       app: gol-ctr
-      commit: $CI_COMMIT_SHA
     template:
       metadata:
        labels:
          app: gol-ctr
-         commit: $CI_COMMIT_SHA
       spec:
          containers:
          - name: gol-pod
