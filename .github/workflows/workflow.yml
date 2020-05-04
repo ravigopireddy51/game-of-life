@@ -17,10 +17,10 @@ jobs:
     
     - uses: azure/docker-login@v1
       with:
-        login-server: contoso.azurecr.io
+        login-server: hub.docker.com
         username: ${{ secrets.REGISTRY_USERNAME }}
         password: ${{ secrets.REGISTRY_PASSWORD }}
     
     - run: |
-        docker build . -t contoso.azurecr.io/gameoflife-image:${{ github.sha }}
-        docker push contoso.azurecr.io/gameoflife-image:${{ github.sha }}
+        docker build . -t docker.io/gameoflife-image:${{ github.sha }}
+        docker push docker.io/ravigopireddy299/gameoflife-image:${{ github.sha }}
